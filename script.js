@@ -18,7 +18,7 @@ function addBookToLibrary(title, author, pages, read) {
 function displayBooks() {
     const displayArea = document.getElementById('bookDisplay');
     displayArea.innerHTML = "";
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, index) => {
         const card = document.createElement('div');
         card.classList.add('book-card');
         card.innerHTML = `
@@ -26,9 +26,16 @@ function displayBooks() {
             <p>Author: ${book.author}</p>
             <p>Pages: ${book.pages}</p>
             <p>Read: ${book.read}</p>
+            <p><button id="sters" data-index="${index}">Remove book</button></p>
         `;
+        card.querySelector('#sters').addEventListener('click', () => removeBook(index));
         displayArea.appendChild(card);
     })
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
 }
 
 myLibrary.push(new Book('The Hobbit', 'J.R.R Tolkien', '295', 'not read yet'));
