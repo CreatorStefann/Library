@@ -45,3 +45,27 @@
     transition: all 1s ease-out;
     cursor: pointer;
 }
+
+.toggle-read-button {
+    color: black;
+    background-color: rgba(255, 23, 23, 0.685);
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+}
+
+.read {
+    background-color: rgba(40, 201, 80, 0.993);
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    color: black;
+}
+
+.toggle-read-button:hover {
+    background-color: rgb(146, 126, 219);
+    transition: all 1s ease-out;
+    cursor: pointer;
+}

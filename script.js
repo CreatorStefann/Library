@@ -8,6 +8,9 @@ function Book(title, author, pages, read){
     this.info = function() {
         return `${title} by ${author}, ${pages} pages, ${read}`;
     }
+    this.toggleReadStatus = function () {
+        this.read = this.read === 'Read' ? 'Not read yet' : 'Read';
+    };
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -25,10 +28,19 @@ function displayBooks() {
             <h3>${book.title}</h3>
             <p>Author: ${book.author}</p>
             <p>Pages: ${book.pages}</p>
-            <p>Read: ${book.read}</p>
+            <p>
+            <button class="toggle-read-button ${book.read === 'Read' ? 'read' : ''}"
+                    data-index="${index}">
+                ${book.read}
+            </button>
+            </p>
             <p><button id="sters" data-index="${index}">Remove book</button></p>
         `;
         card.querySelector('#sters').addEventListener('click', () => removeBook(index));
+        card.querySelector('.toggle-read-button').addEventListener('click', () => {
+            book.toggleReadStatus();
+            displayBooks();
+        });
         displayArea.appendChild(card);
     })
 }
@@ -38,8 +50,8 @@ function removeBook(index) {
     displayBooks();
 }
 
-myLibrary.push(new Book('The Hobbit', 'J.R.R Tolkien', '295', 'not read yet'));
-myLibrary.push(new Book('To Kill a Mockingbird', 'Harper Lee', '281', 'true'));
+myLibrary.push(new Book('The Hobbit', 'J.R.R Tolkien', '295', 'Not read yet'));
+myLibrary.push(new Book('To Kill a Mockingbird', 'Harper Lee', '281', 'Read'));
 
 displayBooks();
 console.log(myLibrary);
@@ -59,7 +71,7 @@ confirmBtn.addEventListener("click", (event) => {
     const title = document.getElementById("titlu").value;
     const author = document.getElementById("autor").value;
     const pages = document.getElementById("pagini").value;
-    const read = document.getElementById("citit").checked ? "true" : "not read yet";
+    const read = document.getElementById("citit").checked ? "Read" : "Not read yet";
     addBookToLibrary(title, author, pages, read);
     formular.reset();
     favDialog.close();
