@@ -10,14 +10,7 @@ function Book(title, author, pages, read){
     }
 }
 
-const book1 = new Book('The Hobbit', 'J.R.R Tolkien', '295', 'not read yet');
-console.log(book1.info());
-
-function addBookToLibrary() {
-    let title = prompt("Enter the book title:");
-    let author = prompt("Enter the book author:");
-    let pages = parseInt(prompt("Enter the number of pages:"));
-    let read = prompt("Did you read it?");
+function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
     displayBooks();
 }
@@ -39,8 +32,28 @@ function displayBooks() {
 }
 
 myLibrary.push(new Book('The Hobbit', 'J.R.R Tolkien', '295', 'not read yet'));
-myLibrary.push(new Book('To Kill a Mockingbird', 'Harper Lee', '281', 'read'));
+myLibrary.push(new Book('To Kill a Mockingbird', 'Harper Lee', '281', 'true'));
 
 displayBooks();
-addBookToLibrary();
 console.log(myLibrary);
+
+const showButton = document.getElementById("showDialog");
+const favDialog = document.getElementById("favDialog");
+const outputBox = document.querySelector("output");
+const confirmBtn = favDialog.querySelector("#confirmBtn");
+const formular = document.querySelector("form");
+
+showButton.addEventListener("click", () => {
+    favDialog.showModal();
+})
+
+confirmBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    const title = document.getElementById("titlu").value;
+    const author = document.getElementById("autor").value;
+    const pages = document.getElementById("pagini").value;
+    const read = document.getElementById("citit").checked ? "true" : "not read yet";
+    addBookToLibrary(title, author, pages, read);
+    formular.reset();
+    favDialog.close();
+})

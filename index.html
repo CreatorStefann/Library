@@ -7,6 +7,37 @@
     <title>Library</title>
 </head>
 <body>
+    <dialog id="favDialog">
+        <form>
+            <p>
+                <label for="titlu">Title</label>
+                <br>
+                <input type="text" id="titlu" name="title">
+            </p>
+            <p>
+                <label for="autor">Author</label>
+                <br>
+                <input type="text" id="autor" name="author">
+            </p>
+            <p>
+                <label for="pagini">Pages</label>
+                <br>
+                <input type="number" id="pagini" name="pages">
+            </p>
+            <p>
+                <label for="citit">Have you read it?</label>
+                <input type="checkbox" id="citit" name="read">
+            </p>
+            <div>
+                <button value="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirmBtn" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+    <p>
+        <button id="showDialog">Add a book</button>
+    </p>
+    <output></output>
     <div id="bookDisplay"></div>
     <script src="script.js"></script>
 </body>
